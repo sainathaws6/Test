@@ -3,7 +3,7 @@ Resources:
   MyS3Bucket:
     Type: "AWS::S3::Bucket"
     Properties:
-      BucketName: "test"
+      BucketName: "Test"
 
   MyS3BucketPolicy:
     Type: "AWS::S3::BucketPolicy"
