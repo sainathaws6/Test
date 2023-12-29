@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  MyS3Bucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: "test"
+
+  MyS3BucketPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref MyS3Bucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Action: "s3:GetObject"
+            Resource: !Sub "arn:aws:s3:::${MyS3Bucket}/*"
+            Principal: "*"
+
+  MyIndexHtmlObject:
+    Type: "AWS::S3::Object"
+    Properties:
+      Bucket: !Ref MyS3Bucket
+      Key: "index.html"
+      ContentType: "text/html"
+      Body: |
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Hello World</title>
+        </head>
+        <body>
+          <h1>Hello, World!</h1>
+        </body>
+        </html>
